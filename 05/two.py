@@ -37,7 +37,6 @@ location_guess = 0
 found = False
 while not found:
     seed_guess = location_guess
-    # print(f"test for loc {location_guess}")
 
     for mod in modifications:
         for range_start, range_end, diff in mod:
