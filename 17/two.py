@@ -38,17 +38,11 @@ with open("17/input.txt", "r") as f:
 
 rows, cols = len(mmap), len(mmap[0])
 
-start = (0, 0, "e", 1)
-finish = (rows - 1, cols - 1)
-
 dist = {(i, j, d, c): math.inf for i in range(rows) for j in range(cols) for d in ("n", "e", "s", "w") for c in range(1, 11)}
 unvisited = PriorityQueue()
-previous = {(i, j): None for i in range(rows) for j in range(cols)}
 
-dist[start] = 0
 unvisited.put((0, (0, 0), "e", 1))
 unvisited.put((0, (0, 0), "s", 1))
-previous[start] = None
 
 while not unvisited.empty():
     current_dist, current, current_direction, current_counter = unvisited.get()
@@ -68,7 +62,6 @@ while not unvisited.empty():
         if alt < dist[n]:
             dist[n] = alt
             unvisited.put((alt, (n_i, n_j), n_direction, n_counter))
-            previous[n] = current
 
 result = min(dist[(rows - 1, cols - 1, d, c)] for d in ("e", "s") for c in range(4, 11))
 
