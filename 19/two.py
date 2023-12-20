@@ -41,13 +41,12 @@ while True:
                     r_min, r_max = incl_ranges[attr]
                     updated_incl_ranges = dict(incl_ranges)
 
-                    if sign == "<":
-                        if r_min < threshold < r_max:
+                    if r_min < threshold < r_max:
+                        if sign == "<":
                             updated_incl_ranges.update({attr: (r_min, threshold - 1)})
                             incl_ranges[attr] = (threshold, r_max)
 
-                    elif sign == ">":
-                        if r_min < threshold < r_max:
+                        elif sign == ">":
                             updated_incl_ranges.update({attr: (threshold + 1, r_max)})
                             incl_ranges[attr] = (r_min, threshold)
 
